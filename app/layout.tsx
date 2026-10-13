@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Raleway } from "next/font/google";
+import { Geist_Mono, Raleway } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/custom/app-sidebar";
+import { Separator } from "@/components/ui/separator";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
-const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
-
-const raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -30,16 +34,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn(
         "h-full",
         "antialiased",
-        geistSans.variable,
+        raleway.variable,
         geistMono.variable,
         "font-sans",
-        raleway.variable,
-        geistHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col p-5 md:px-8">
-        <TooltipProvider>{children}</TooltipProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
